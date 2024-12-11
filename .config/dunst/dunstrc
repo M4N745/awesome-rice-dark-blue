@@ -1,0 +1,14 @@
+[global]
+font = MesloLGS Nerd Font 10
+# transparency = 50
+# background = #03006b
+frame_width = 0
+
+[rule]
+appname = "notify-send"
+summary = "Brightness"
+format = "%s\n%b"
+background = "#222222BF"
+foreground = "#8ad2ff"
+timeout = 1000
+urgency = low

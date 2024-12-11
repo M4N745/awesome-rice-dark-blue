@@ -1,0 +1,28 @@
+* {
+	font:		"MesloLGS Nerd Font 50";
+	selected-normal-foreground:	#b3c3ff;
+	foreground:	#b3c3ff;
+	alternate-normal-background:	rgba ( 0, 0, 0, 0 % );
+	background:	rgba ( 0, 0, 33, 87 % );
+	selected-normal-background:	#093b6b;
+}
+window {
+	border-radius:	10px;
+}
+mainbox {
+	children:	[listview];
+}
+listview {
+	border:		0px;
+	spacing:25px;
+	scrollbar:      false;
+	lines:          1;
+	columns:        4;
+	padding:        10px;
+}
+element {
+	border-radius:  10px;
+}
+element-text {
+	horizontal-align: 0.5;
+}
