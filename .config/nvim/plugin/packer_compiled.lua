@@ -49,8 +49,8 @@ local function save_profiles(threshold)
 end
 
 time([[Luarocks path setup]], true)
-local package_path_str = "/home/m4nc3/.cache/nvim/packer_hererocks/2.1.1703358377/share/lua/5.1/?.lua;/home/m4nc3/.cache/nvim/packer_hererocks/2.1.1703358377/share/lua/5.1/?/init.lua;/home/m4nc3/.cache/nvim/packer_hererocks/2.1.1703358377/lib/luarocks/rocks-5.1/?.lua;/home/m4nc3/.cache/nvim/packer_hererocks/2.1.1703358377/lib/luarocks/rocks-5.1/?/init.lua"
-local install_cpath_pattern = "/home/m4nc3/.cache/nvim/packer_hererocks/2.1.1703358377/lib/lua/5.1/?.so"
+local package_path_str = "/home/frontend-pc/.cache/nvim/packer_hererocks/2.1.1703358377/share/lua/5.1/?.lua;/home/frontend-pc/.cache/nvim/packer_hererocks/2.1.1703358377/share/lua/5.1/?/init.lua;/home/frontend-pc/.cache/nvim/packer_hererocks/2.1.1703358377/lib/luarocks/rocks-5.1/?.lua;/home/frontend-pc/.cache/nvim/packer_hererocks/2.1.1703358377/lib/luarocks/rocks-5.1/?/init.lua"
+local install_cpath_pattern = "/home/frontend-pc/.cache/nvim/packer_hererocks/2.1.1703358377/lib/lua/5.1/?.so"
 if not string.find(package.path, package_path_str, 1, true) then
   package.path = package.path .. ';' .. package_path_str
 end
@@ -74,29 +74,39 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
-  ["barbar.nvim"] = {
+  coq_nvim = {
     loaded = true,
-    path = "/home/m4nc3/.local/share/nvim/site/pack/packer/start/barbar.nvim",
-    url = "https://github.com/romgrk/barbar.nvim"
+    path = "/home/frontend-pc/.local/share/nvim/site/pack/packer/start/coq_nvim",
+    url = "https://github.com/ms-jpg/coq_nvim"
   },
-  ["gitsigns.nvim"] = {
+  ["feline-nvim.git"] = {
     loaded = true,
-    path = "/home/m4nc3/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
-    url = "https://github.com/lewis6991/gitsigns.nvim"
+    path = "/home/frontend-pc/.local/share/nvim/site/pack/packer/start/feline-nvim.git",
+    url = "git@github.com:feline-nvim/feline-nvim"
+  },
+  ["nvim-lspconfig"] = {
+    loaded = true,
+    path = "/home/frontend-pc/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
+    url = "https://github.com/neovim/nvim-lspconfig"
+  },
+  ["nvim-tree.lua"] = {
+    loaded = true,
+    path = "/home/frontend-pc/.local/share/nvim/site/pack/packer/start/nvim-tree.lua",
+    url = "https://github.com/nvim-tree/nvim-tree.lua"
   },
   ["nvim-web-devicons"] = {
     loaded = true,
-    path = "/home/m4nc3/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
+    path = "/home/frontend-pc/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
     url = "https://github.com/nvim-tree/nvim-web-devicons"
   },
   ["packer.nvim"] = {
     loaded = true,
-    path = "/home/m4nc3/.local/share/nvim/site/pack/packer/start/packer.nvim",
+    path = "/home/frontend-pc/.local/share/nvim/site/pack/packer/start/packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
   },
   ["tokyodark.nvim"] = {
     loaded = true,
-    path = "/home/m4nc3/.local/share/nvim/site/pack/packer/start/tokyodark.nvim",
+    path = "/home/frontend-pc/.local/share/nvim/site/pack/packer/start/tokyodark.nvim",
     url = "https://github.com/tiagovla/tokyodark.nvim"
   }
 }

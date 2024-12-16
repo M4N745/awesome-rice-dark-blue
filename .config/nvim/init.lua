@@ -16,8 +16,16 @@ local packer_bootstrap = ensure_packer()
 require('packer').startup(function(use)
 	use 'wbthomason/packer.nvim' -- Packer can manage itself
 	use 'tiagovla/tokyodark.nvim' -- theme
-	use 'nvim-tree/nvim-web-devicons'
-	use 'nvim-tree/nvim-tree.lua'
+	use 'nvim-tree/nvim-web-devicons' -- files icons
+	use 'nvim-tree/nvim-tree.lua' -- files tree (folder)
+	use 'neovim/nvim-lspconfig' -- lspconfig (required for autocompletion
+	use {
+		'ms-jpg/coq_nvim',
+		branch = 'coq',
+		run = 'python3 -m coq deps',
+		url = 'git@github.com:ms-jpg/coq_nvim.git'
+	}
+
 
 	requires = {
 		'nvim-tree/nvim-web-devicons'
@@ -28,8 +36,9 @@ require('packer').startup(function(use)
 	end
 end)
 
+
 local default_config = {
-    transparent_background = false, -- set background to transparent
+    transparent_background = true, -- set background to transparent
     gamma = 1.00, -- adjust the brightness of the theme
     styles = {
         comments = { italic = true }, -- style for comments
@@ -49,9 +58,29 @@ vim.g.loaded_netrwPlugin = 1
 
 -- optionally enable 24-bit colour
 vim.opt.termguicolors = true
+-- lspconfig
+vim.g.coq_settings = {
+	auto_start = 'shut-up',
+	display = {
+		icons = {
+			mode = 'short'
+		}
+	}
+}
 
--- empty setup using defaults
-require("nvim-tree").setup()
+local coq = require('coq')
+local lspconfig = require("lspconfig")
+
+lspconfig.ts_ls.setup(coq.lsp_ensure_capabilities({
+	on_attach = function(client, bufnr)
+		local opts = { noremap = true, silent = true }
+		local keymap = vim.api.nvim_buf_set_keymap
+
+		keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+		keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+	end,
+}))
+
 
 -- OR setup with some options
 require("nvim-tree").setup({
@@ -59,14 +88,23 @@ require("nvim-tree").setup({
     sorter = "case_sensitive",
   },
   view = {
-    width = 30,
+    width = 40,
   },
   renderer = {
     group_empty = true,
   },
   filters = {
-    dotfiles = true,
+    dotfiles = false,
   },
+})
+
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function()
+    -- Check if no files are opened
+    if #vim.fn.argv() == 0 then
+      require("nvim-tree.api").tree.open()
+    end
+  end,
 })
 
 vim.o.number = true
